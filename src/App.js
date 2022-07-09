@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import Stovle from "./components/Stovle";
+import { solutions } from "./data/solutions";
+
+console.log(solutions);
 
 function App() {
+  const [solution, setSolution] = useState(null);
+
+  useEffect(() => {
+    const randomSolution = solutions[Math.floor(Math.random() * 30)];
+    setSolution(randomSolution);
+  }, [setSolution]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Stovle</h1>
+      {solution && <Stovle solution={solution} />}
     </div>
   );
 }
